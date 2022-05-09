@@ -9,7 +9,7 @@ from core.singletons import storage_object, base_path
 
 
 class MicropythonDescriptionGeoarea(models.Model):
-    """Geoarea associated with actuator or sensor."""
+    """Geoarea associated with board, actuator or sensor."""
 
     description = models.CharField(
         max_length=154, unique=False, blank=True, null=True,
@@ -30,6 +30,8 @@ class MicropythonDescriptionGeoarea(models.Model):
         blank=True, null=False, verbose_name="Created at date/time",
         help_text="Created at date/time")
 
+    geometry = models.PointField(null=True)
+
     class Meta:
         db_table = "variable__geoarea"
         verbose_name = 'Geographic Area'
@@ -47,7 +49,7 @@ class MicropythonDescriptionGeoarea(models.Model):
 
 
 class MicropythonDescriptionDevice(models.Model):
-    """Experiment team to associate the images."""
+    """Edge device description."""
 
     LOOP_INTERVAL_CHOICES = (
         ('SS', 'match seconds'),
